@@ -105,7 +105,8 @@ export const loadTimeZonesFromDb = async (): Promise<TimeZoneInfo[] | null> => {
     }
     
     return zones;
-  } catch (err) {
+  } catch {
+    // Database read failed - return null to trigger API fallback
     return null;
   }
 };
