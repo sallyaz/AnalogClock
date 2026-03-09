@@ -33,7 +33,7 @@ function getFallbackTimeZones(): TimeZoneInfo[] {
         countryCode: '',
       }));
     }
-  } catch (err) {
+  } catch {
     // Fallback to hardcoded zones
   }
   
@@ -83,7 +83,7 @@ export const timezoneApi = createApi({
           }));
 
           return { data: zones };
-        } catch (err) {
+        } catch {
           return { data: getFallbackTimeZones() };
         }
       },
