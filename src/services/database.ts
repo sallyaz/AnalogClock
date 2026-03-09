@@ -100,7 +100,7 @@ export const loadTimeZonesFromDb = async (): Promise<TimeZoneInfo[] | null> => {
         zoneName: String(row.zoneName ?? ''),
         gmtOffset: Number(row.gmtOffset ?? 0),
         countryCode: String(row.countryCode ?? ''),
-        countryName: row.countryName != null ? String(row.countryName) : undefined,
+        countryName: row.countryName === null ? undefined : String(row.countryName),
       });
     }
     
@@ -136,7 +136,7 @@ export const loadLastSelectedTimezone = async (): Promise<string | null> => {
     const resultSet = results[0];
     if (resultSet.rows.length > 0) {
       const value = resultSet.rows.item(0).value;
-      return value != null ? String(value) : null;
+      return value === null ? null : String(value);
     }
     return null;
   } catch {
